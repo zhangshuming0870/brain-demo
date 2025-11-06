@@ -1,0 +1,11 @@
+Model Information:
+* title:	Brain 3D
+* source:	https://sketchfab.com/3d-models/brain-3d-33dd384ebe35410eaca42f21e14f14a3
+* author:	soufiane oujihi (https://sketchfab.com/sararoujihi)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Brain 3D" (https://sketchfab.com/3d-models/brain-3d-33dd384ebe35410eaca42f21e14f14a3) by soufiane oujihi (https://sketchfab.com/sararoujihi) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,35 @@
+// 生物知识数据工具
+
+export const organData = [
+  {
+    id: 'heart',
+    name: '心脏',
+    nameEn: 'Heart',
+    description: '心脏是循环系统的核心器官，负责将血液泵送到全身',
+    function: '泵血功能，维持血液循环',
+    location: '胸腔中部，偏左',
+    relatedDiseases: ['心脏病', '心律失常', '心肌梗死'],
+    relatedOrgans: ['lungs', 'bloodVessels']
+  },
+  {
+    id: 'lungs',
+    name: '肺',
+    nameEn: 'Lungs',
+    description: '肺是呼吸系统的主要器官，负责气体交换',
+    function: '气体交换，吸入氧气，呼出二氧化碳',
+    location: '胸腔两侧',
+    relatedDiseases: ['肺炎', '肺癌', '哮喘'],
+    relatedOrgans: ['heart', 'trachea']
+  }
+]
+
+export function getOrganById(id) {
+  return organData.find(organ => organ.id === id)
+}
+
+export function getRelatedOrgans(id) {
+  const organ = getOrganById(id)
+  if (!organ) return []
+  return organ.relatedOrgans.map(relatedId => getOrganById(relatedId)).filter(Boolean)
+}
+
