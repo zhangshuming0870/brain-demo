@@ -23,7 +23,7 @@ export const useSceneStore = defineStore('scene', () => {
   const neuronCount = ref(50) // 神经元数量（固定50个）
   const neuronConnectionProbability = ref(1.0) // 连接概率（固定100%）
   const animateNeurons = ref(true) // 是否动画
-  const neuronSignalInterval = ref(8000) // 信号间隔（固定8000ms）
+  const neuronSignalInterval = ref(4000) // 信号间隔（4000ms，频率提高一倍）
 
   // 方法定义
   function setSelectedOrgan(organ) {

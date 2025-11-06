@@ -554,7 +554,7 @@ export function createNeuronNetwork(brainModel, count = 50, connectionProbabilit
  * @param {number} color - 光点颜色（十六进制）
  * @returns {THREE.Object3D} 信号光点对象
  */
-function createSignalPulse(curve, parent, duration = 800, color = 0x00ffff, size = 0.015) {
+function createSignalPulse(curve, parent, duration = 400, color = 0x00ffff, size = 0.015) { // 默认频率提高一倍（800ms -> 400ms）
   if (!curve || !parent) return null
   
   // 创建信号光点（小球体）
@@ -638,7 +638,7 @@ export function animateNeuralSignalPropagation(sourceNeuron, targetNeuron = null
     const originalIntensity = soma.material.emissiveIntensity
     
     let flashStart = Date.now()
-    const flashDuration = 150
+    const flashDuration = 75 // 频率提高一倍（150ms -> 75ms）
     function sourceFlash() {
       const elapsed = Date.now() - flashStart
       const progress = elapsed / flashDuration
@@ -673,7 +673,7 @@ export function animateNeuralSignalPropagation(sourceNeuron, targetNeuron = null
         if (synapsePoints.length > 0) {
           const synapseCurve = new THREE.CatmullRomCurve3(synapsePoints)
           // 突触传递：使用绿色光点（与突触颜色一致）
-          const synapsePulse = createSignalPulse(synapseCurve, scene, 600, 0x00ff00, 0.012)
+          const synapsePulse = createSignalPulse(synapseCurve, scene, 300, 0x00ff00, 0.012) // 频率提高一倍（600ms -> 300ms）
           if (synapsePulse && scene) {
             scene.add(synapsePulse)
             signals.push(synapsePulse)
@@ -686,7 +686,7 @@ export function animateNeuralSignalPropagation(sourceNeuron, targetNeuron = null
                 const originalIntensity = soma.material.emissiveIntensity
                 
                 let flashTime = Date.now()
-                const flashDuration = 200
+                const flashDuration = 100 // 频率提高一倍（200ms -> 100ms）
                 function flash() {
                   const elapsed = Date.now() - flashTime
                   const progress = elapsed / flashDuration
@@ -706,14 +706,14 @@ export function animateNeuralSignalPropagation(sourceNeuron, targetNeuron = null
               } else {
                 completed = true
               }
-            }, 600)
+            }, 300) // 频率提高一倍（600ms -> 300ms）
           }
         }
       }
     } else {
       completed = true
     }
-  }, 150) // 源神经元闪烁后立即开始突触传递
+  }, 75) // 源神经元闪烁后立即开始突触传递（频率提高一倍，150ms -> 75ms）
   
   return {
     signals,
@@ -726,7 +726,7 @@ export function animateNeuralSignalPropagation(sourceNeuron, targetNeuron = null
  * @param {Line} connection - 连接线（轴突或突触）
  * @param {number} duration - 动画时长（毫秒）
  */
-export function animateNeuralSignal(connection, duration = 1000) {
+export function animateNeuralSignal(connection, duration = 500) { // 默认频率提高一倍（1000ms -> 500ms）
   if (!connection || !connection.userData || !connection.material) return
   
   // 如果连接正在动画中，跳过
@@ -782,7 +782,7 @@ export function animateNeuralSignal(connection, duration = 1000) {
  * @param {Object3D} networkGroup - 神经元网络组
  * @param {number} interval - 触发间隔（毫秒）
  */
-export function startRandomNeuralSignals(networkGroup, interval = 2000) {
+export function startRandomNeuralSignals(networkGroup, interval = 1000) { // 默认频率提高一倍（2000ms -> 1000ms）
   if (!networkGroup) return null
   
   // 收集所有神经元和它们的突触连接
@@ -860,10 +860,10 @@ export function startRandomNeuralSignals(networkGroup, interval = 2000) {
       pair.source.userData.animating = true
       animateNeuralSignalPropagation(pair.source, pair.target, pair.synapse, scene)
       
-      // 1秒后允许再次动画
+      // 0.5秒后允许再次动画（频率提高一倍，1000ms -> 500ms）
       setTimeout(() => {
         pair.source.userData.animating = false
-      }, 1000)
+      }, 500)
     }
   }
   

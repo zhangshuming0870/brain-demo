@@ -11,7 +11,7 @@ export function useSectionAnimation() {
   const isAnimating = ref(false)
   let animationId = null
   let startTime = null
-  const animationDuration = 3000 // 3秒完成一次扫描
+  const animationDuration = 1500 // 1.5秒完成一次扫描（频率提高一倍）
 
   /**
    * 播放扫描动画
