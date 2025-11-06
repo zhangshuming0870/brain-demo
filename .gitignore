@@ -25,4 +25,8 @@ dist-ssr
 
 # Markdown files
 *.md
+# 排除以下 markdown 文件
+!README.md
+!Readme.md
+!brain.md
 
